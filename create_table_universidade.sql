@@ -1,0 +1,30 @@
+-- criação das tabelas
+
+CREATE TABLE Areas(
+   AreasID INT AUTO_INCREMENT PRIMARY KEY,
+   Nome VARCHAR(100) NOT NULL
+);
+
+CREATE TABLE Cursos(
+   CursoID INT AUTO_INCREMENT PRIMARY KEY,
+   Nome VARCHAR(100) NOT NULL,
+   AreaID INT,
+   FOREIGN KEY (AreaID) REFERENCES Areas(AreaID)
+   );
+   
+   CREATE TABLE Alunos(
+   AlunoID INT AUTO_INCREMENT PRIMARY KEY,
+   Nome VARCHAR(100) NOT NULL,
+   Sobrenome VARCHAR(100) NOT NULL,
+   Email VARCHAR (120) UNIQUE NOT NULL
+   );
+   
+   CREATE TABLE Matriculas(
+   MatriculaID INT AUTO_INCREMENT PRIMARY KEY,
+   AlunoID INT,
+   CursoID INT,
+   FOREIGN KEY (AlunoID) REFERENCES Alunos(AlunoID),
+   FOREIGN KEY (CursoID) REFERENCES Cursos(CursoID),
+   UNIQUE(AlunoID, CursoID)
+   );
+   
